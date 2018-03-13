@@ -1,0 +1,88 @@
+@keyframes lds-gear {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    50% {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+  @-webkit-keyframes lds-gear {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    50% {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+  .lds-gear>div {
+    -webkit-transform-origin: 100px 100px;
+    transform-origin: 100px 100px;
+    -webkit-animation: lds-gear 4s infinite linear;
+    animation: lds-gear 4s infinite linear;
+    position: relative;
+  }
+
+  .lds-gear>div div {
+    position: absolute;
+    width: 28px;
+    height: 192px;
+    background: #5789e8;
+    left: 100px;
+    top: 100px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .lds-gear>div div:nth-child(1) {
+    width: 152px;
+    height: 152px;
+    border-radius: 50%;
+  }
+
+  .lds-gear>div div:nth-child(3) {
+    -webkit-transform: translate(-50%, -50%) rotate(36deg);
+    transform: translate(-50%, -50%) rotate(36deg);
+  }
+
+  .lds-gear>div div:nth-child(4) {
+    -webkit-transform: translate(-50%, -50%) rotate(72deg);
+    transform: translate(-50%, -50%) rotate(72deg);
+  }
+
+  .lds-gear>div div:nth-child(5) {
+    -webkit-transform: translate(-50%, -50%) rotate(108deg);
+    transform: translate(-50%, -50%) rotate(108deg);
+  }
+
+  .lds-gear>div div:nth-child(6) {
+    -webkit-transform: translate(-50%, -50%) rotate(144deg);
+    transform: translate(-50%, -50%) rotate(144deg);
+  }
+
+  .lds-gear>div div:nth-child(7) {
+    width: 84px;
+    height: 84px;
+    background: #fff;
+    border-radius: 50%;
+  }
+
+  .lds-gear {
+    width: 100% !important;
+    height: 100% !important;
+    -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+    transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  }

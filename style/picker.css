@@ -1,0 +1,95 @@
+.picker-wrap {
+	position: fixed;
+	width: 280px;
+	height: 170px;
+	left: 50%;
+	margin-left: -140px;
+	bottom: 0px;
+	background-color: rgba(255, 255, 255, 0.4);
+    z-index: 110;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    opacity: 0.1;
+}
+
+.picker-btn {
+    width: 46px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.4);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    margin-left: -23px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.picker-div {
+    width: 250px;
+    height: 25px;
+    /* background-color: rgba(255, 255, 255, 0.7); */
+    margin: 14px auto;
+}
+
+.picker-text {
+    width: 25px;
+    height: 100%;
+    line-height: 25px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.picker-bar {
+    width: 210px;
+    height: 8px;
+    display: inline-block;
+    margin-bottom: 3px;
+    background-color: rgb(49, 178, 221);
+    position: relative;
+    left: 10px;
+}
+
+.picker-bar-drag {
+    position: absolute;
+    left: -4px;
+    top: -9px;
+    width: 8px;
+    height: 25px;
+    background-color: rgb(49, 178, 221);
+    cursor: pointer;
+}
+
+.picker-circle {
+    position: fixed;
+    width: 330px;
+	height: 120px;
+	left: 50%;
+	margin-left: -165px;
+	top: 20px;
+	/* background-color: rgba(255, 255, 255, 0.4); */
+	z-index: 110;
+}
+
+.picker-sm-circle {
+    width: 58px;
+    height: 58px;
+    border: 5px solid salmon;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 15px 5px 0 5px;
+    position: relative;
+}
+
+.picker-sm-circle span {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    left: 5px;
+    top: 5px;
+    line-height: 46px;
+    text-align: center;
+    font-size: 22px;
+    color: white;
+}
