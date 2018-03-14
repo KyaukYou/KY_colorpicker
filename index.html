@@ -6,22 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>color picker</title>
     <link rel="stylesheet" href="./style/reset.css">
-    <link rel="stylesheet" href="./style/load.css">
 	<link rel="stylesheet" href="./style/color.css">
 	<link rel="stylesheet" href="./style/picker.css">
+	<link rel="stylesheet" href="./style/circle.css">
+	<link rel="stylesheet" href="style/jquery.circliful.css">
     
 </head>
 <body>
     <div class="color-wrap">
     	    <div class="color-container-wrap color-container-wrap-left" data-bol='0'>
     		    <div class="color-btn color-btn-left" data-index='0'>
-    				<img src="image/load.apng" alt="">
+    				<img src="image/load.gif" alt="">
     		    </div>
     		    <div class="color-show"></div>
     	    </div>
     	    <div class="color-container-wrap color-container-wrap-right" data-bol='0'>
     		    <div class="color-btn color-btn-right" data-index='1'>
-    		    	<img src="image/load.apng" alt="">
+    		    	<img src="image/load.gif" alt="">
     		    </div>
     		    <div class="color-show"></div>
     		</div>
@@ -31,14 +32,14 @@
 		<div class="picker-div">
 			<span class="picker-text">R:</span>
 			<span class="picker-bar">
-				<i class="picker-bar-drag"></i>
+				<i class="picker-bar-drag" bar-index='0'></i>
 			</span>
 		</div>
 
 		<div class="picker-div">
 			<span class="picker-text">G:</span>
 			<span class="picker-bar">
-				<i class="picker-bar-drag"></i>
+				<i class="picker-bar-drag" bar-index='1'></i>
 			</span>
 		</div>
 
@@ -46,7 +47,7 @@
 		<div class="picker-div">
 			<span class="picker-text">B:</span>
 			<span class="picker-bar">
-				<i class="picker-bar-drag"></i>
+				<i class="picker-bar-drag" bar-index='2'></i>
 			</span>
 		</div>
 
@@ -54,7 +55,7 @@
 		<div class="picker-div">
 			<span class="picker-text">A:</span>
 			<span class="picker-bar">
-				<i class="picker-bar-drag"></i>
+				<i class="picker-bar-drag" bar-index='3'></i>
 			</span>
 		</div>
 		
@@ -63,20 +64,95 @@
     </div>
 	<div class="picker-circle">
 		<div class="picker-sm-circle">
-			<span>255</span>
+			<div id="rgba1"></div>
+<!-- 			<div 
+				class="picker-sm-rgba" 
+				id="R" 
+				data-dimension="80" 
+				data-width="6" 
+				data-percent="35" 
+				data-fgcolor="#61a9dc" 
+				data-bgcolor="#eee" 
+				data-fill="transparent" 
+				data-total="255" 
+				data-part="35">
+			</div> -->
+			<span class="picker-circle-text"></span>
 		</div>
 		<div class="picker-sm-circle">
-			<span>255</span>
+			<div id="rgba2"></div>
+<!-- 			<div 
+				class="picker-sm-rgba" 
+				id="G" 
+				data-dimension="80" 
+				data-width="6" 
+				data-percent="0" 
+				data-fgcolor="#61a9dc" 
+				data-bgcolor="#eee" 
+				data-fill="transparent" 
+				data-total="255" 
+				data-part="0">
+			</div> -->
+			<span class="picker-circle-text"></span>
 		</div>
 		<div class="picker-sm-circle">
-			<span>255</span>
+			<div id="rgba3"></div>
+<!-- 			<div 
+				class="picker-sm-rgba" 
+				id="B" 
+				data-dimension="80" 
+				data-width="6" 
+				data-percent="0" 
+				data-fgcolor="#61a9dc" 
+				data-bgcolor="#eee" 
+				data-fill="transparent" 
+				data-total="255" 
+				data-part="0">
+			</div> -->
+			<span class="picker-circle-text"></span>
 		</div>
 		<div class="picker-sm-circle">
-			<span>255</span>
+			<div id="rgba4"></div>
+<!-- 			<div 
+				class="picker-sm-rgba" 
+				id="A" 
+				data-dimension="80" 
+				data-width="6" 
+				data-percent="0" 
+				data-fgcolor="#61a9dc" 
+				data-bgcolor="#eee" 
+				data-fill="transparent" 
+				data-total="1" 
+				data-part="0">
+			</div>	 -->
+			<span class="picker-circle-text"></span>
 		</div>
 	</div>
 
+	<div id="indicatorContainer"></div>
+
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script src='./script/jquery.circliful.js'></script>
+	<script src='./script/radialIndicator.js'></script>
+	<script src='./script/var.js'></script>
     <script src='./script/dom.js'></script>
     <script src='./script/color.js'></script>
+    <script src='./script/run.js'></script>
+
+    <script>
+    	// var aa = $('#indicatorContainer').radialIndicator({
+	    //     barColor: '#87CEEB',
+	    //     barWidth: 10,
+	    //     initValue: 60,
+	    //     roundCorner : true,
+	    //     percentage: true
+    	// });
+
+    	// setInterval(function() {
+    	// 	var aaa = aa.data('radialIndicator');
+    	// 	aaa.animate(50)
+    	// },500)
+    	// aa.val(50)
+    </script>
 </body>
 </html>

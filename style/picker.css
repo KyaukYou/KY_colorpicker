@@ -4,12 +4,12 @@
 	height: 170px;
 	left: 50%;
 	margin-left: -140px;
-	bottom: 0px;
+	bottom: 10px;
 	background-color: rgba(255, 255, 255, 0.4);
     z-index: 110;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    opacity: 0.1;
+    /* opacity: 0.1; */
 }
 
 .picker-btn {
@@ -29,6 +29,11 @@
     height: 25px;
     /* background-color: rgba(255, 255, 255, 0.7); */
     margin: 14px auto;
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently */
 }
 
 .picker-text {
@@ -37,7 +42,13 @@
     line-height: 25px;
     text-align: center;
     display: inline-block;
-    font-size: 20px;
+    font-size: 21px;
+    color: rgb(76, 73, 76);
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently */
 }
 
 .picker-bar {
@@ -45,7 +56,7 @@
     height: 8px;
     display: inline-block;
     margin-bottom: 3px;
-    background-color: rgb(49, 178, 221);
+    background-color: rgba(109, 90, 108, 0.75);
     position: relative;
     left: 10px;
 }
@@ -56,7 +67,7 @@
     top: -9px;
     width: 8px;
     height: 25px;
-    background-color: rgb(49, 178, 221);
+    background-color: rgba(109, 90, 108, 0.90);
     cursor: pointer;
 }
 
@@ -72,24 +83,30 @@
 }
 
 .picker-sm-circle {
-    width: 58px;
-    height: 58px;
-    border: 5px solid salmon;
+    width: 75px;
+    height: 75px;
+    /* border: 5px solid salmon; */
     border-radius: 50%;
     display: inline-block;
-    margin: 15px 5px 0 5px;
+    margin: 15px 2px 0 2px;
     position: relative;
 }
 
 .picker-sm-circle span {
     position: absolute;
-    width: 46px;
-    height: 46px;
+    width: 71px;
+    height: 71px;
     border-radius: 50%;
-    left: 5px;
-    top: 5px;
-    line-height: 46px;
+    left: 4px;
+    top: 8px;
+    line-height: 62px;
     text-align: center;
     font-size: 22px;
     color: white;
+}
+
+.picker-sm-rgba {
+    position: absolute;
+    top: 0;
+    left: 0;
 }

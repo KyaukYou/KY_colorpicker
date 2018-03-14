@@ -1,0 +1,4 @@
+btnClick();
+pickerBarDragEvent();
+changeCircleText();
+     
