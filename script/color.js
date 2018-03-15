@@ -69,34 +69,132 @@ function pickerBarDragEvent() {
 					}
 
 					changeCircleText();
-					// $('#R').circliful();
+					changeBgColor();
 				}
 
 				document.onmouseup = function(e) {
 					document.onmousedown = null;
 					document.onmousemove = null;
-					// $('#R').circliful();
-					// $('#G').circliful();
-					// $('#B').circliful();
-					// $('#A').circliful(); 
 				};
 			})
 	}
 }
 
+// 圆弧改变
 function changeCircleText() {
 	var pickerText = getDom('.picker-circle-text');
 	var pickerSmRgba = getDom('.picker-sm-rgba');
 	var pickerSmCircle = getDom('.picker-sm-circle');
 	for(var i=0; i<pickerText.length; i++) {
 		pickerText[i].innerHTML = rgbaArr[i];
-		// setAttr(pickerSmRgba[i],'data-percent',rgbaArr[i]);
-		// setAttr(pickerSmRgba[i],'data-part',rgbaArr[i]);
 	}
 	var xiaoshu = rgbaArr[3] * 100;
 	rgba1.data('radialIndicator').animate(rgbaArr[0]);
 	rgba2.data('radialIndicator').animate(rgbaArr[1]);
 	rgba3.data('radialIndicator').animate(rgbaArr[2]);
 	rgba4.data('radialIndicator').animate(xiaoshu);
-	console.log(xiaoshu)
+}
+
+// 实时更改背景颜色
+function changeBgColor() {
+	getDom('.color-wrap')[0].style.backgroundColor = 'rgba('+ rgbaArr[0] +','+ rgbaArr[1] +','+ rgbaArr[2] +','+ rgbaArr[3] +')';
+	let colorMin1 = 255-rgbaArr[0];
+	let colorMin2 = 255-rgbaArr[1];
+	let colorMin3 = 255-rgbaArr[2];
+	let colorMin4 = 1-rgbaArr[3];
+	// getDom('.picker-circle')[0].style.backgroundColor = 'rgba('+ colorMin1 +','+ colorMin2 +','+ colorMin3 +','+ 1 +')';
+	// getDom('.color-choose-btn')[0].style.backgroundColor = 'rgba('+ colorMin1 +','+ colorMin2 +','+ colorMin3 +','+ colorMin4 +')';
+}
+
+// 更改复制的是十六进制还是RGBA
+function typeChange() {
+	domEvent(getDom('.color-choose-btn')[0],'click',function() {
+		let colorChooseText = getDom('color-choose-text')[0];
+		let myType = getAttr(colorChooseText,'data-type');
+		if(myType == 'one') {
+			colorChooseText.innerHTML = '十六进制'
+			setAttr(colorChooseText,'data-type','two');
+		}else {
+			colorChooseText.innerHTML = 'RGBA';
+			setAttr(colorChooseText,'data-type','one');
+		}
+	})
+};
+
+
+var throttle = new Throttle(500,function(args) {
+	let colorChooseText = getDom('color-choose-text')[0];
+	let myType = getAttr(colorChooseText,'data-type');
+	let copyDiv = getDom('.copy-div')[0];
+	let timer = null;
+	clearTimeout(timer);
+	if(myType == 'one') {
+		copyDiv.style.transform = 'translate(0,0)';
+		timer = setTimeout(function() {
+			copyDiv.style.transform = 'translate(0,-40px)';
+		},3000);
+	}else {
+			
+	}
+})
+
+//点击复制
+function copyColor() {
+	let myType = getAttr(this,'data-type');
+	let copyDiv = getDom('.copy-div')[0];
+	if(myType == 'one') {
+		throttle.filter(arguments);
+
+	}else {
+		throttle.filter(arguments);		
+	}
+}
+
+domEvent(getDom('.color-choose-text')[0],'click',function() {
+	console.log(getDom('#text1'))
+	this.value = rgbaArr[0]+','+rgbaArr[1]+','+rgbaArr[2]+','+rgbaArr[3];
+	this.select(); 
+	aa = this.createTextRange(); 
+	aa.execCommand("Copy") 
+	throttle.filter(arguments);
+})
+
+
+//节流函数
+
+function Throttle(interval,callback) {
+    var time;
+    this.filter = function (args) {
+        if(time && new Date() - time<interval){
+            time = new Date();
+            return;
+        }
+        time = new Date();
+        args?callback(args):callback();
+    };
+}
+
+
+
+
+// 加载完成生成推荐颜色div
+function initRecColor() {
+	let colorUl = getDom('.color-show-ul')[0];
+	colorUl.innerHTML = '';
+	for(var i=0; i<recColor.length; i++) {
+		var a = recColor[i].six;
+		var b = recColor[i].rgba[0];
+		var c = recColor[i].rgba[1];
+		var d = recColor[i].rgba[2];
+		var e = recColor[i].text;
+		var f = recColor[i].word;
+		var g = recColor[i].tColor;
+
+		let myLi = document.createElement('li');
+		myLi.innerHTML = '<div class="color-show-left"><div class="color-show-c"><span>'+ a +'</span></div><div class="color-show-c">R：<span>'+ b +'</span></div><div class="color-show-c">G：<span>'+ c +'</span></div><div class="color-show-c">B：<span>'+ d +'</span></div></div><div class="color-show-right"><span class="color-show-b">'+ e +'</span><span class="color-show-b">'+ f +'</span></div> ';
+		myLi.style.backgroundColor = 'rgba('+b+','+c+','+d+','+1+')';
+		myLi.style.color = g;
+		colorUl.appendChild(myLi);
+	}
+	
 }

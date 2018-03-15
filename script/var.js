@@ -17,54 +17,80 @@ var dis = [
 	}
 ];
 
-var rgbaArr = [0,0,0,0];
+var rgbaArr = [132,78,155,1];
 
 var currentPickerIndex = 0;
 
 var rgba1 = $('#rgba1').radialIndicator({
 	radius: 36,
-	barColor: '#87CEEB',
-	barWidth: 5,
-	initValue: 60,
+	barColor: 'rgba(255,10,10,0.5)',
+	barBgColor: "rgba(255,255,2555,0.35)",
+	barWidth: 6,
+	initValue: 0,
 	minValue: 0,
 	maxValue: 255,
 	roundCorner : true,
 	percentage: false,
-	displayNumber: false
+	displayNumber: false,
+	frameTime: 3
 });
 
 var rgba2 = $('#rgba2').radialIndicator({
 	radius: 36,
-	barColor: '#87CEEB',
-	barWidth: 5,
-	initValue: 60,
+	barColor: 'rgba(10,255,10,0.5)',
+	barBgColor: "rgba(255,255,2555,0.35)",
+	barWidth: 6,
+	initValue: 0,
 	minValue: 0,
 	maxValue: 255,
 	roundCorner : true,
 	percentage: false,
-	displayNumber: false
+	displayNumber: false,
+	frameTime: 3
 });
 
 var rgba3 = $('#rgba3').radialIndicator({
 	radius: 36,
-	barColor: '#87CEEB',
-	barWidth: 5,
-	initValue: 60,
+	barColor: 'rgba(10,10,255,0.5)',
+	barBgColor: "rgba(255,255,2555,0.35)",
+	barWidth: 6,
+	initValue: 0,
 	minValue: 0,
 	maxValue: 255,
 	roundCorner : true,
 	percentage: false,
-	displayNumber: false
+	displayNumber: false,
+	frameTime: 3
 });
 
 var rgba4 = $('#rgba4').radialIndicator({
 	radius: 36,
-	barColor: '#87CEEB',
-	barWidth: 5,
-	initValue: 10,
+	barColor: 'rgba(255,255,255,0.5)',
+	barBgColor: "rgba(255,255,2555,0.35)",
+	barWidth: 6,
+	initValue: 0,
 	minValue: 0,
 	maxValue: 100,
 	roundCorner : true,
 	percentage: false,
-	displayNumber: false
+	displayNumber: false,
+	frameTime: 3
 });    
+
+
+var recColor = [
+	{
+		six: "#E16B8C",
+		tColor: "#803D50",
+		rgba: [255,107,140,1],
+		text: "红梅",
+		word: "KOHBAI"
+	},
+	{
+		six: "#E16B8C",
+		tColor: "#803D50",
+		rgba: [255,107,140,1],
+		text: "红梅",
+		word: "KOHBAI"
+	}
+]
