@@ -50,24 +50,25 @@ function pickerBarDragEvent() {
 					var myLeft = pos.x - dis[currentPickerIndex].disX;
 					var myTop = pos.y - dis[currentPickerIndex].disY;
 
-					if(myLeft <= -4) {
-						myLeft = -4
-					}else if(myLeft >= 206) {
-						myLeft = 206
+					if(myLeft <= 0) {
+						myLeft = 0
+					}else if(myLeft >= 210) {
+						myLeft = 210
 					}
 
 					pickerBarDrag[currentPickerIndex].style.left = myLeft + 'px';
 					if(getAttr(pickerBarDrag[currentPickerIndex],'bar-index') == 3) {
 
-						let per = (myLeft+4) / 210;
+						let per = (myLeft) / 210;
 						// let arr4 = Math.round(parseFloat(per) * 100) / 100;
 						arr4 = per.toFixed(2);
 						rgbaArr[currentPickerIndex] = arr4;
 					}else {
-						let per = (myLeft+4) / 210;
+						let per = (myLeft) / 210;
 						rgbaArr[currentPickerIndex] = parseInt(255 * per);
 					}
 
+					// getDom('#text1').value = rgbaArr[0]+','+rgbaArr[1]+','+rgbaArr[2]+','+rgbaArr[3];
 					changeCircleText();
 					changeBgColor();
 				}
@@ -77,6 +78,16 @@ function pickerBarDragEvent() {
 					document.onmousemove = null;
 				};
 			})
+	}
+}
+
+function barChange() {
+	let bar = getDom('.picker-bar-drag');
+	for(let i=0; i<bar.length; i++) {
+		bar[i].style.left = rgbaArr[i] / 255 * 210 + 'px';
+		if(i == 3) {
+			bar[i].style.left = rgbaArr[i] * 100 / 100 * 210 + 'px';
+		}
 	}
 }
 
@@ -104,12 +115,13 @@ function changeBgColor() {
 	let colorMin4 = 1-rgbaArr[3];
 	// getDom('.picker-circle')[0].style.backgroundColor = 'rgba('+ colorMin1 +','+ colorMin2 +','+ colorMin3 +','+ 1 +')';
 	// getDom('.color-choose-btn')[0].style.backgroundColor = 'rgba('+ colorMin1 +','+ colorMin2 +','+ colorMin3 +','+ colorMin4 +')';
+
 }
 
 // 更改复制的是十六进制还是RGBA
 function typeChange() {
 	domEvent(getDom('.color-choose-btn')[0],'click',function() {
-		let colorChooseText = getDom('color-choose-text')[0];
+		let colorChooseText = getDom('.colorChooseBtn')[0];
 		let myType = getAttr(colorChooseText,'data-type');
 		if(myType == 'one') {
 			colorChooseText.innerHTML = '十六进制'
@@ -123,7 +135,7 @@ function typeChange() {
 
 
 var throttle = new Throttle(500,function(args) {
-	let colorChooseText = getDom('color-choose-text')[0];
+	let colorChooseText = getDom('.colorChooseBtn')[0];
 	let myType = getAttr(colorChooseText,'data-type');
 	let copyDiv = getDom('.copy-div')[0];
 	let timer = null;
@@ -144,18 +156,15 @@ function copyColor() {
 	let copyDiv = getDom('.copy-div')[0];
 	if(myType == 'one') {
 		throttle.filter(arguments);
-
 	}else {
 		throttle.filter(arguments);		
 	}
 }
 
-domEvent(getDom('.color-choose-text')[0],'click',function() {
-	console.log(getDom('#text1'))
-	this.value = rgbaArr[0]+','+rgbaArr[1]+','+rgbaArr[2]+','+rgbaArr[3];
-	this.select(); 
-	aa = this.createTextRange(); 
-	aa.execCommand("Copy") 
+domEvent(getDom('.colorChooseBtn')[0],'click',function() {
+	
+	getDom('#text1').innerHTML = rgbaArr[0]+','+rgbaArr[1]+','+rgbaArr[2]+','+rgbaArr[3];
+	// console.log(getDom('#text1').value);
 	throttle.filter(arguments);
 })
 
@@ -193,8 +202,12 @@ function initRecColor() {
 		let myLi = document.createElement('li');
 		myLi.innerHTML = '<div class="color-show-left"><div class="color-show-c"><span>'+ a +'</span></div><div class="color-show-c">R：<span>'+ b +'</span></div><div class="color-show-c">G：<span>'+ c +'</span></div><div class="color-show-c">B：<span>'+ d +'</span></div></div><div class="color-show-right"><span class="color-show-b">'+ e +'</span><span class="color-show-b">'+ f +'</span></div> ';
 		myLi.style.backgroundColor = 'rgba('+b+','+c+','+d+','+1+')';
+		var nowColor = b+','+c+','+d+','+1
+		myLi.setAttribute('data-color',nowColor);
+		myLi.className = 'color-li';
 		myLi.style.color = g;
 		colorUl.appendChild(myLi);
-	}
-	
+	}	
 }
+
+

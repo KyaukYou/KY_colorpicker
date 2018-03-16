@@ -14,3 +14,10 @@ color picker
 	- 复制功能
 	- 修改光标样式
 	- https://github.com/zenorocha/clipboard.js
+
+***
+
++ 2018.3.16
+	- 颜色选择复制
+	- 列表滚动
+	

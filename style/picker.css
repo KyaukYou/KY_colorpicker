@@ -71,6 +71,7 @@
     background-color: rgba(109, 90, 108, 0.90);
     cursor: url('../image/cursor8.png'),auto;
     /* background-image: url('../image/texture.png'); */
+    transition: all .05s;
 }
 
 

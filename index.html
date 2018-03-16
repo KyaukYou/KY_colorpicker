@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="./style/reset.css">
 	<link rel="stylesheet" href="./style/color.css">
 	<link rel="stylesheet" href="./style/picker.css">
+	<link rel="stylesheet" href="./style/perfect-scrollbar.css">
 
-<!-- 	<script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
+	<script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
 	<script type="text/javascript">
 	   $youziku.load("body", "9f70846617ce4c7fbaf9f504c87d472c", "cyjianxk");
 	   /*$youziku.load("#id1,.class1,h1", "9f70846617ce4c7fbaf9f504c87d472c", "cyjianxk");*/
 	   /*．．．*/
 	   $youziku.draw();
-	</script> -->
+	</script>
     
 </head>
 <body>
@@ -25,22 +26,22 @@
     				<img src="image/load.gif" alt="">
     		    </div>
     		    <span class="color-mask2"></span>
-    		    <div class="color-show">
-    		    	<ul class="color-show-ul">
-    		    		<li>
-    		    			<div class="color-show-left">
-    		    				<div class="color-show-c">   <span>#E18B8C</span></div>
-    		    				<div class="color-show-c">R：<span>225</span></div>
-    		    				<div class="color-show-c">G：<span>107</span></div>
-    		    				<div class="color-show-c">B：<span>140</span></div>
-    		    			</div>
-    		    			<div class="color-show-right">
-    		    				<span class="color-show-b">红梅</span>
-    		    				<span class="color-show-b">KOHBAI</span>
-    		    			</div>   		    			
-    		    		</li>
-    		    	</ul>
-    		    </div>
+	    		    <div class="color-show" id="container">
+	    		    	<ul class="color-show-ul content">
+	    		    		<li>
+	    		    			<div class="color-show-left">
+	    		    				<div class="color-show-c">   <span>#E18B8C</span></div>
+	    		    				<div class="color-show-c">R：<span>225</span></div>
+	    		    				<div class="color-show-c">G：<span>107</span></div>
+	    		    				<div class="color-show-c">B：<span>140</span></div>
+	    		    			</div>
+	    		    			<div class="color-show-right">
+	    		    				<span class="color-show-b">红梅</span>
+	    		    				<span class="color-show-b">KOHBAI</span>
+	    		    			</div>   		    			
+	    		    		</li>
+	    		    	</ul>
+	    		    </div>
     	    </div>
     	    <div class="color-container-wrap color-container-wrap-right" data-bol='0'>
     		    <div class="color-btn color-btn-right" data-index='1'>
@@ -105,7 +106,8 @@
 	</div>
 
 	<div class="color-choose">
-		<span class="color-choose-text" data-type='one'>RGBA</span>
+		<div id="text1" style="opacity: 0; z-index: -999">0,0,0,1</div>
+    	<button class="colorChooseBtn color-choose-text" data-type='one'>RGBA</button>
 		<span class="color-choose-btn"></span>
 	</div>
 	
@@ -113,13 +115,38 @@
 		复制成功
 	</div>
 
-	<input id="text1" style="display: none">
-
 	<script src="./script/jquery.js"></script>
 	<script src='./script/radialIndicator.js'></script>
+	<script src='./script/clipboard.js'></script>
+	<script src='./script/perfect-scrollbar.js'></script>
 	<script src='./script/var.js'></script>
     <script src='./script/dom.js'></script>
     <script src='./script/color.js'></script>
     <script src='./script/run.js'></script>
+
+
+    <script>
+    	// getDom('#text1').innerHTML = rgbaArr[0]+','+rgbaArr[1]+','+rgbaArr[2]+','+rgbaArr[3];
+    	var clipboard1 = new ClipboardJS('.colorChooseBtn', {
+    	    target: function() {
+    	        return document.getElementById('text1');
+    	    }
+    	});
+
+    	clipboard1.on('success', function(e) {
+    	    console.log(e);
+    	});
+
+    	clipboard1.on('error', function(e) {
+    	    console.log(e);
+    	});
+
+    	const ps = new PerfectScrollbar('#container',{
+    		wheelSpeed: 2,
+			wheelPropagation: true,
+			minScrollbarLength: 20
+    	});
+    </script>
+
 </body>
 </html>
