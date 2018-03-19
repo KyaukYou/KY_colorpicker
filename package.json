@@ -1,0 +1,20 @@
+{
+  "name": "colorpicker",
+  "version": "1.0.0",
+  "description": "color picker\r 颜色选择器\r 2018.3.13.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DogChai/color.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DogChai/color/issues"
+  },
+  "homepage": "https://github.com/DogChai/color#readme"
+}
