@@ -11,10 +11,20 @@
     "url": "git+https://github.com/DogChai/color.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "DogChai",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DogChai/color/issues"
   },
-  "homepage": "https://github.com/DogChai/color#readme"
+  "homepage": "https://github.com/DogChai/color#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "csv-loader": "^2.1.1",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.0.7",
+    "lodash": "^4.17.5",
+    "style-loader": "^0.20.3",
+    "webpack": "^3.5.5"
+  }
 }
