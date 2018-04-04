@@ -9,12 +9,10 @@
 	<link rel="stylesheet" href="./style/color.css">
 	<link rel="stylesheet" href="./style/picker.css">
 	<link rel="stylesheet" href="./style/perfect-scrollbar.css">
-
+	<script src="./script/jquery.js"></script>
 	<script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
 	<script type="text/javascript">
 	   $youziku.load("body", "9f70846617ce4c7fbaf9f504c87d472c", "cyjianxk");
-	   /*$youziku.load("#id1,.class1,h1", "9f70846617ce4c7fbaf9f504c87d472c", "cyjianxk");*/
-	   /*．．．*/
 	   $youziku.draw();
 	</script>
     
@@ -115,7 +113,7 @@
 		复制成功
 	</div>
 
-	<script src="./script/jquery.js"></script>
+	
 	<script src='./script/radialIndicator.js'></script>
 	<script src='./script/clipboard.js'></script>
 	<script src='./script/perfect-scrollbar.js'></script>
@@ -123,10 +121,9 @@
     <script src='./script/dom.js'></script>
     <script src='./script/color.js'></script>
     <script src='./script/run.js'></script>
-
+	<!-- <script src="dist/color.js"></script>	 -->
 
     <script>
-    	// getDom('#text1').innerHTML = rgbaArr[0]+','+rgbaArr[1]+','+rgbaArr[2]+','+rgbaArr[3];
     	var clipboard1 = new ClipboardJS('.colorChooseBtn', {
     	    target: function() {
     	        return document.getElementById('text1');
