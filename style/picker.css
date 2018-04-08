@@ -69,7 +69,8 @@
     width: 8px;
     height: 25px;
     background-color: rgba(109, 90, 108, 0.90);
-    cursor: url('../image/cursor8.png'),auto;
+    /* cursor: url('../image/cursor8.png'),auto; */
+    cursor: pointer;
     /* background-image: url('../image/texture.png'); */
     transition: all .05s;
 }

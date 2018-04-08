@@ -3,23 +3,32 @@ function btnClick() {
 	let colorBtn = getDom('.color-btn');
 	let colorWrap = getDom('.color-container-wrap');
 	for (var i = 0; i < colorBtn.length; i++) {
-		domEvent(colorBtn[i], 'click', function () {
+		domEvent(colorBtn[i], 'click', function (e) {
+			e.stopPropagation();
 			var dataIndex = this.getAttribute('data-index');
 			if (dataIndex == 0) {
 				let dataBol = getAttr(colorWrap[dataIndex], 'data-bol');
 				if (dataBol == 0) {
 					changeAttr(colorWrap[dataIndex], 'left', 0);
 					setAttr(colorWrap[dataIndex], 'data-bol', 1);
+
+					changeAttr(colorWrap[1], 'right', '-270px');
+					setAttr(colorWrap[1], 'data-bol', 0);
+
 				} else {
 					changeAttr(colorWrap[dataIndex], 'left', '-270px');
 					setAttr(colorWrap[dataIndex], 'data-bol', 0)
 				}
 
+
 			} else if (dataIndex == 1) {
 				let dataBol = getAttr(colorWrap[dataIndex], 'data-bol');
 				if (dataBol == 0) {
 					changeAttr(colorWrap[dataIndex], 'right', 0);
-					setAttr(colorWrap[dataIndex], 'data-bol', 1)
+					setAttr(colorWrap[dataIndex], 'data-bol', 1);
+
+					changeAttr(colorWrap[0], 'left', '-270px');
+					setAttr(colorWrap[0], 'data-bol', 0)
 				} else {
 					changeAttr(colorWrap[dataIndex], 'right', '-270px');
 					setAttr(colorWrap[dataIndex], 'data-bol', 0);
@@ -36,6 +45,8 @@ function pickerBarDragEvent() {
 
 	for (var i = 0; i < pickerBarDrag.length; i++) {
 		pickerBarDrag[i].index = i;
+
+		// pc端
 		domEvent(pickerBarDrag[i], 'mousedown', function (e) {
 			var e = e || event;
 			var pos = getPos(e);
@@ -77,7 +88,52 @@ function pickerBarDragEvent() {
 				document.onmousedown = null;
 				document.onmousemove = null;
 			};
+		});
+
+		// 移动端
+		domEvent(pickerBarDrag[i], 'touchstart', function (e) {
+			var e = e.touches[0];
+			var pos = getPos(e);
+			currentPickerIndex = this.index;
+			dis[this.index].disX = pos.x - this.offsetLeft;
+			dis[this.index].disY = pos.y - this.offsetTop;
+
+			document.ontouchmove= function (e) {
+				var e = e.touches[0];
+				var pos = getPos(e);
+
+				var myLeft = pos.x - dis[currentPickerIndex].disX;
+				var myTop = pos.y - dis[currentPickerIndex].disY;
+
+				if (myLeft <= 0) {
+					myLeft = 0
+				} else if (myLeft >= 210) {
+					myLeft = 210
+				}
+
+				pickerBarDrag[currentPickerIndex].style.left = myLeft + 'px';
+				if (getAttr(pickerBarDrag[currentPickerIndex], 'bar-index') == 3) {
+
+					let per = (myLeft) / 210;
+					// let arr4 = Math.round(parseFloat(per) * 100) / 100;
+					arr4 = per.toFixed(2);
+					rgbaArr[currentPickerIndex] = arr4;
+				} else {
+					let per = (myLeft) / 210;
+					rgbaArr[currentPickerIndex] = parseInt(255 * per);
+				}
+
+				// getDom('#text1').value = rgbaArr[0]+','+rgbaArr[1]+','+rgbaArr[2]+','+rgbaArr[3];
+				changeCircleText();
+				changeBgColor();
+			}
+
+			document.ontouchend = function (e) {
+				document.ontouchstart = null;
+				document.ontouchmove = null;
+			};
 		})
+
 	}
 }
 
@@ -146,7 +202,10 @@ var throttle = new Throttle(500, function (args) {
 			copyDiv.style.transform = 'translate(0,-40px)';
 		}, 3000);
 	} else {
-
+		copyDiv.style.transform = 'translate(0,0)';
+		timer = setTimeout(function () {
+			copyDiv.style.transform = 'translate(0,-40px)';
+		}, 3000);
 	}
 })
 
@@ -155,13 +214,12 @@ function copyColor() {
 	let myType = getAttr(getDom('.colorChooseBtn')[0], 'data-type');
 	let copyDiv = getDom('.copy-div')[0];
 	if (myType == 'one') {
-		getDom('#text1').innerHTML = rgbaArr[0] + ',' + rgbaArr[1] + ',' + rgbaArr[2] + ',' + rgbaArr[3];
+		getDom('#text1').innerHTML = 'rgba(' + rgbaArr[0] + ',' + rgbaArr[1] + ',' + rgbaArr[2] + ',' + rgbaArr[3] + ')';
 		throttle.filter(arguments);
 	} else {
 		let str = 'rgb('+rgbaArr[0]+','+rgbaArr[1]+','+rgbaArr[2]+')';
 		var color16 = str.colorHex();
 		getDom('#text1').innerHTML = color16;
-		// console.log(color16)
 		throttle.filter(arguments);
 	}
 }
@@ -191,7 +249,7 @@ function Throttle(interval, callback) {
 
 
 
-// 加载完成生成推荐颜色div
+// 加载完成生成推荐颜色div 左侧
 function initRecColor() {
 	let colorUl = getDom('.color-show-ul')[0];
 	colorUl.innerHTML = '';
@@ -203,6 +261,30 @@ function initRecColor() {
 		var e = recColor[i].text;
 		var f = recColor[i].word;
 		var g = recColor[i].tColor;
+
+		let myLi = document.createElement('li');
+		myLi.innerHTML = '<div class="color-show-left"><div class="color-show-c"><span>' + a + '</span></div><div class="color-show-c">R：<span>' + b + '</span></div><div class="color-show-c">G：<span>' + c + '</span></div><div class="color-show-c">B：<span>' + d + '</span></div></div><div class="color-show-right"><span class="color-show-b">' + e + '</span><span class="color-show-b">' + f + '</span></div> ';
+		myLi.style.backgroundColor = 'rgba(' + b + ',' + c + ',' + d + ',' + 1 + ')';
+		var nowColor = b + ',' + c + ',' + d + ',' + 1
+		myLi.setAttribute('data-color', nowColor);
+		myLi.className = 'color-li';
+		myLi.style.color = g;
+		colorUl.appendChild(myLi);
+	}
+}
+
+// 加载完成生成推荐颜色div 右侧
+function initRecColor1() {
+	let colorUl = getDom('.color-show-ul')[1];
+	colorUl.innerHTML = '';
+	for (var i = 0; i < recColor1.length; i++) {
+		var a = recColor1[i].six;
+		var b = recColor1[i].rgba[0];
+		var c = recColor1[i].rgba[1];
+		var d = recColor1[i].rgba[2];
+		var e = recColor1[i].text;
+		var f = recColor1[i].word;
+		var g = recColor1[i].tColor;
 
 		let myLi = document.createElement('li');
 		myLi.innerHTML = '<div class="color-show-left"><div class="color-show-c"><span>' + a + '</span></div><div class="color-show-c">R：<span>' + b + '</span></div><div class="color-show-c">G：<span>' + c + '</span></div><div class="color-show-c">B：<span>' + d + '</span></div></div><div class="color-show-right"><span class="color-show-b">' + e + '</span><span class="color-show-b">' + f + '</span></div> ';

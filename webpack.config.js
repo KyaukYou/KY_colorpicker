@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
 module.exports = {
-	entry: ['./script/radialIndicator.js','./script/clipboard.js','./script/perfect-scrollbar.js','./script/var.js','./script/dom.js','./script/color.js','./script/run.js'],
+	entry: ['./script/myColor.js','./script/var.js','./script/dom.js','./script/color.js','./script/run.js'],
 	devtool: 'inline-source-map',
 	// plugins: [
 	// 	new CleanWebpackPlugin(['dist']),
