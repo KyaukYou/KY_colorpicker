@@ -17,14 +17,14 @@ var dis = [
 	}
 ];
 
-var rgbaArr = [132,78,155,1];
+var rgbaArr = [248,195,205,1];
 
 var currentPickerIndex = 0;
 
 var rgba1 = $('#rgba1').radialIndicator({
 	radius: 36,
 	barColor: 'rgba(255,10,10,0.5)',
-	barBgColor: "rgba(255,255,2555,0.35)",
+	barBgColor: "rgba(255,255,2555,0.55)",
 	barWidth: 6,
 	initValue: 0,
 	minValue: 0,
@@ -38,7 +38,7 @@ var rgba1 = $('#rgba1').radialIndicator({
 var rgba2 = $('#rgba2').radialIndicator({
 	radius: 36,
 	barColor: 'rgba(10,255,10,0.5)',
-	barBgColor: "rgba(255,255,2555,0.35)",
+	barBgColor: "rgba(255,255,2555,0.55)",
 	barWidth: 6,
 	initValue: 0,
 	minValue: 0,
@@ -52,7 +52,7 @@ var rgba2 = $('#rgba2').radialIndicator({
 var rgba3 = $('#rgba3').radialIndicator({
 	radius: 36,
 	barColor: 'rgba(10,10,255,0.5)',
-	barBgColor: "rgba(255,255,2555,0.35)",
+	barBgColor: "rgba(255,255,2555,0.55)",
 	barWidth: 6,
 	initValue: 0,
 	minValue: 0,
@@ -66,7 +66,7 @@ var rgba3 = $('#rgba3').radialIndicator({
 var rgba4 = $('#rgba4').radialIndicator({
 	radius: 36,
 	barColor: 'rgba(255,255,255,0.5)',
-	barBgColor: "rgba(255,255,2555,0.35)",
+	barBgColor: "rgba(255,255,2555,0.55)",
 	barWidth: 6,
 	initValue: 0,
 	minValue: 0,
