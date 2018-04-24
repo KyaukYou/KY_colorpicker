@@ -242,3 +242,40 @@ body {
 .color-show-ul li {
 	cursor: pointer;
 }
+
+.color-input {
+	position: fixed;
+	bottom: 240px;
+	width: 190px;
+	height: 30px;
+	left: 50%;
+	margin-left: -95px;
+	z-index: 110;
+}
+
+.color-input input {
+	width: 145px;
+	float: left;
+	height: 100%;
+	box-sizing: border-box;
+	border: 1px solid white;
+	cursor: text;
+	outline: none;
+	padding: 2px 2px 2px 6px;
+	font-size: 15px;
+}
+
+.color-input button {
+	width: 45px;
+	float: left;
+	height: 100%;
+	background-color: white;
+	border: 1px solid white;
+	border-left: 1px solid black;
+	outline: none;
+	transition: all .3s;
+}
+
+.color-input button:hover {
+	background-color: rgba(255 ,255 ,255 , 0.8)
+}
