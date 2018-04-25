@@ -318,6 +318,9 @@ function toColor16(str) {
 	}
 }
 
+var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;  
+
+/*RGB格式转为16进制颜色*/ 
 String.prototype.colorHex = function(){
     var that = this;
     if(/^(rgb|RGB)/.test(that)){
@@ -352,3 +355,103 @@ String.prototype.colorHex = function(){
         return that;  
     }
 };
+
+/*16进制颜色转为RGB格式*/  
+String.prototype.colorRgb = function(){  
+    var sColor = this.toLowerCase();  
+    if(sColor && reg.test(sColor)){  
+        if(sColor.length === 4){  
+            var sColorNew = "#";  
+            for(var i=1; i<4; i+=1){  
+                sColorNew += sColor.slice(i,i+1).concat(sColor.slice(i,i+1));     
+            }  
+            sColor = sColorNew;  
+        }  
+        //处理六位的颜色值  
+        var sColorChange = [];  
+        for(var i=1; i<7; i+=2){  
+            sColorChange.push(parseInt("0x"+sColor.slice(i,i+2)));    
+        }  
+        return "RGB(" + sColorChange.join(",") + ")";  
+    }else{  
+        return sColor;    
+    }  
+}; 
+	
+	
+function CheckIsColor(colorValue) {  
+    var type = /^(#[0-9a-fA-F]{6}){1}$/g;  
+    // var re = new RegExp(type);  
+    if (colorValue.match(type) == null) {  
+        var type1 =/^[rR][gG][Bb][Aa]?[\(]([\s]*(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),){2}[\s]*(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),?[\s]*(0\.\d{1,2}|1|0)?[\)]{1}$/g;  
+        // re = new RegExp(type);  
+        if (colorValue.match(type1) == null) {  
+			return false;  
+			// console.log(1)
+        } else {  
+			// return true;
+			// rgb  
+			var a = colorValue.slice(4);
+			var c = a.split(',');
+			c[2] = parseInt(c[2]).toString();
+			c.push('1');
+			rgbaArr = c;
+			// console.log(rgbaArr)
+			// console.log(2)
+			var r1 = Math.round(210 / 255 * c[0]);
+			var g1 = Math.round(210 / 255 * c[1]);
+			var a1 = Math.round(210 / 255 * c[2]);
+
+			var rgb1Arr = [];
+			rgb1Arr[0] = r1;	
+			rgb1Arr[1] = g1;
+			rgb1Arr[2] = a1;
+
+			for(var i=0; i<document.getElementsByClassName('picker-bar-drag').length; i++) {
+				document.getElementsByClassName('picker-bar-drag')[i].style.left = rgb1Arr[i] + 'px';
+			}
+			changeBgColor();
+			changeCircleText();
+        }  
+    } else {  
+		// return true;  
+		// 16
+		var rgb = colorValue.colorRgb();
+		var a = rgb.slice(4);
+		var c = a.split(',');
+			c[2] = parseInt(c[2]).toString();
+			c.push('1');
+		rgbaArr = c;
+
+		var r1 = Math.round(210 / 255 * c[0]);
+		var g1 = Math.round(210 / 255 * c[1]);
+		var a1 = Math.round(210 / 255 * c[2]);
+
+		var rgb1Arr = [];
+		rgb1Arr[0] = r1;	
+		rgb1Arr[1] = g1;
+		rgb1Arr[2] = a1;
+
+		console.log(rgb1Arr)
+
+		for(var i=0; i<document.getElementsByClassName('picker-bar-drag').length; i++) {
+			document.getElementsByClassName('picker-bar-drag')[i].style.left = rgb1Arr[i] + 'px';
+		}
+		changeBgColor();
+		changeCircleText();
+
+		// console.log(rgbaArr)
+		// console.log(3)
+    }  
+}  
+
+console.log('rgb(202,56,89)'.colorHex());
+
+document.getElementById('getInputColor').addEventListener('click',function() {
+	var inputColor = document.getElementById('inputColor').value;
+	console.log(inputColor);
+
+	//判断是rgb还是#xxx
+	CheckIsColor(inputColor);	
+
+})
