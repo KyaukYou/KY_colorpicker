@@ -378,6 +378,29 @@ String.prototype.colorRgb = function(){
     }  
 }; 
 	
+function inputFn(val) {
+
+	var a = val.slice(4);
+	var c = a.split(',');
+	c[2] = parseInt(c[2]).toString();
+	c.push('1');
+	rgbaArr = c;
+
+	var r1 = Math.round(210 / 255 * c[0]);
+	var g1 = Math.round(210 / 255 * c[1]);
+	var a1 = Math.round(210 / 255 * c[2]);
+
+	var rgb1Arr = [];
+	rgb1Arr[0] = r1;	
+	rgb1Arr[1] = g1;
+	rgb1Arr[2] = a1;
+
+	for(var i=0; i<document.getElementsByClassName('picker-bar-drag').length; i++) {
+		document.getElementsByClassName('picker-bar-drag')[i].style.left = rgb1Arr[i] + 'px';
+	}
+	changeBgColor();
+	changeCircleText();
+}
 	
 function CheckIsColor(colorValue) {  
     var type = /^(#[0-9a-fA-F]{6}){1}$/g;  
@@ -391,57 +414,13 @@ function CheckIsColor(colorValue) {
         } else {  
 			// return true;
 			// rgb  
-			var a = colorValue.slice(4);
-			var c = a.split(',');
-			c[2] = parseInt(c[2]).toString();
-			c.push('1');
-			rgbaArr = c;
-			// console.log(rgbaArr)
-			// console.log(2)
-			var r1 = Math.round(210 / 255 * c[0]);
-			var g1 = Math.round(210 / 255 * c[1]);
-			var a1 = Math.round(210 / 255 * c[2]);
-
-			var rgb1Arr = [];
-			rgb1Arr[0] = r1;	
-			rgb1Arr[1] = g1;
-			rgb1Arr[2] = a1;
-
-			for(var i=0; i<document.getElementsByClassName('picker-bar-drag').length; i++) {
-				document.getElementsByClassName('picker-bar-drag')[i].style.left = rgb1Arr[i] + 'px';
-			}
-			changeBgColor();
-			changeCircleText();
+			inputFn(colorValue)
         }  
     } else {  
 		// return true;  
 		// 16
 		var rgb = colorValue.colorRgb();
-		var a = rgb.slice(4);
-		var c = a.split(',');
-			c[2] = parseInt(c[2]).toString();
-			c.push('1');
-		rgbaArr = c;
-
-		var r1 = Math.round(210 / 255 * c[0]);
-		var g1 = Math.round(210 / 255 * c[1]);
-		var a1 = Math.round(210 / 255 * c[2]);
-
-		var rgb1Arr = [];
-		rgb1Arr[0] = r1;	
-		rgb1Arr[1] = g1;
-		rgb1Arr[2] = a1;
-
-		console.log(rgb1Arr)
-
-		for(var i=0; i<document.getElementsByClassName('picker-bar-drag').length; i++) {
-			document.getElementsByClassName('picker-bar-drag')[i].style.left = rgb1Arr[i] + 'px';
-		}
-		changeBgColor();
-		changeCircleText();
-
-		// console.log(rgbaArr)
-		// console.log(3)
+		inputFn(rgb)
     }  
 }  
 
