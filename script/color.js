@@ -428,7 +428,7 @@ console.log('rgb(202,56,89)'.colorHex());
 
 document.getElementById('getInputColor').addEventListener('click',function() {
 	var inputColor = document.getElementById('inputColor').value;
-	console.log(inputColor);
+// 	console.log(inputColor);
 
 	//判断是rgb还是#xxx
 	CheckIsColor(inputColor);	
