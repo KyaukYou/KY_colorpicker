@@ -54,12 +54,12 @@
 		</div>
 	</div>
     <div class="picker-wrap">
-		<!-- <div class="picker-btn"></div> -->
 		<div class="picker-div">
 			<span class="picker-text">R:</span>
 			<span class="picker-bar">
 				<i class="picker-bar-drag picker-bar-drag-one" bar-index='0'></i>
 			</span>
+			<input type="text" id="picker-r" class="picker-input-rgba" maxlength="3">
 		</div>
 
 		<div class="picker-div">
@@ -67,6 +67,7 @@
 			<span class="picker-bar">
 				<i class="picker-bar-drag picker-bar-drag-two" bar-index='1'></i>
 			</span>
+			<input type="text" id="picker-g" class="picker-input-rgba" maxlength="3">
 		</div>
 
 
@@ -75,6 +76,7 @@
 			<span class="picker-bar">
 				<i class="picker-bar-drag picker-bar-drag-three" bar-index='2'></i>
 			</span>
+			<input type="text" id="picker-b" class="picker-input-rgba" maxlength="3">
 		</div>
 
 
@@ -83,6 +85,7 @@
 			<span class="picker-bar">
 				<i class="picker-bar-drag picker-bar-drag-four" bar-index='3'></i>
 			</span>
+			<input type="text" id="picker-a" class="picker-input-rgba" maxlength="3">
 		</div>
 		
 		
@@ -126,14 +129,10 @@
 	<script src='./script/radialIndicator.js'></script>
 	<script src='./script/clipboard.js'></script>
 	<script src='./script/perfect-scrollbar.js'></script>
-	<script src='./script/myColor.js'></script>
-	<script src='./script/var.js'></script>
-    <script src='./script/dom.js'></script>
+	<script src='./script/main.js'></script>
     <script src='./script/color.js'></script>
 	<script src='./script/run.js'></script>
 	
-	<!-- <script src="dist/color.js"></script>	 -->
-
     <script>
     	var clipboard1 = new ClipboardJS('.colorChooseBtn', {
     	    target: function() {
@@ -141,13 +140,13 @@
     	    }
     	});
 
-    	clipboard1.on('success', function(e) {
-    	    console.log(e);
-    	});
+    	// clipboard1.on('success', function(e) {
+    	//     console.log(e);
+    	// });
 
-    	clipboard1.on('error', function(e) {
-    	    console.log(e);
-    	});
+    	// clipboard1.on('error', function(e) {
+    	//     console.log(e);
+    	// });
 
     	const ps = new PerfectScrollbar('#container',{
     		wheelSpeed: 2,
