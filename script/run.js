@@ -4,6 +4,7 @@ changeCircleText();
 typeChange();     
 initRecColor();
 initRecColor1();
+changeInputRgba();
 
 window.onresize = function() {
 	throttle1.filter(arguments);

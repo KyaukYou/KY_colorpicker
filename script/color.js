@@ -78,8 +78,7 @@ function pickerBarDragEvent() {
 					let per = (myLeft) / 210;
 					rgbaArr[currentPickerIndex] = parseInt(255 * per);
 				}
-
-				// getDom('#text1').value = rgbaArr[0]+','+rgbaArr[1]+','+rgbaArr[2]+','+rgbaArr[3];
+				changeInputRgba();
 				changeCircleText();
 				changeBgColor();
 			}
@@ -122,8 +121,7 @@ function pickerBarDragEvent() {
 					let per = (myLeft) / 210;
 					rgbaArr[currentPickerIndex] = parseInt(255 * per);
 				}
-
-				// getDom('#text1').value = rgbaArr[0]+','+rgbaArr[1]+','+rgbaArr[2]+','+rgbaArr[3];
+				changeInputRgba();
 				changeCircleText();
 				changeBgColor();
 			}
@@ -142,7 +140,7 @@ function barChange() {
 	for (let i = 0; i < bar.length; i++) {
 		bar[i].style.left = rgbaArr[i] / 255 * 210 + 'px';
 		if (i == 3) {
-			bar[i].style.left = rgbaArr[i] * 100 / 100 * 210 + 'px';
+			bar[i].style.left = rgbaArr[i] * 100 / 100 * 210 + 4 + 'px';
 		}
 	}
 }
@@ -162,6 +160,14 @@ function changeCircleText() {
 	rgba4.data('radialIndicator').animate(xiaoshu);
 }
 
+// 改变右侧rgba值
+function changeInputRgba() {
+	getDom('#picker-r').value = rgbaArr[0];
+	getDom('#picker-g').value = rgbaArr[1];
+	getDom('#picker-b').value = rgbaArr[2];
+	getDom('#picker-a').value = rgbaArr[3];
+}
+
 // 实时更改背景颜色
 function changeBgColor() {
 	getDom('.color-wrap')[0].style.backgroundColor = 'rgba(' + rgbaArr[0] + ',' + rgbaArr[1] + ',' + rgbaArr[2] + ',' + rgbaArr[3] + ')';
@@ -169,9 +175,6 @@ function changeBgColor() {
 	let colorMin2 = 255 - rgbaArr[1];
 	let colorMin3 = 255 - rgbaArr[2];
 	let colorMin4 = 1 - rgbaArr[3];
-	// getDom('.picker-circle')[0].style.backgroundColor = 'rgba('+ colorMin1 +','+ colorMin2 +','+ colorMin3 +','+ 1 +')';
-	// getDom('.color-choose-btn')[0].style.backgroundColor = 'rgba('+ colorMin1 +','+ colorMin2 +','+ colorMin3 +','+ colorMin4 +')';
-
 }
 
 // 更改复制的是十六进制还是RGBA
@@ -189,7 +192,7 @@ function typeChange() {
 	})
 };
 
-
+// 节流函数
 var throttle = new Throttle(500, function (args) {
 	let colorChooseText = getDom('.colorChooseBtn')[0];
 	let myType = getAttr(colorChooseText, 'data-type');
@@ -226,14 +229,10 @@ function copyColor() {
 
 domEvent(getDom('.colorChooseBtn')[0], 'click', function () {
 	copyColor(this)
-	// getDom('#text1').innerHTML = rgbaArr[0] + ',' + rgbaArr[1] + ',' + rgbaArr[2] + ',' + rgbaArr[3];
-	// console.log(getDom('#text1').value);
-	// throttle.filter(arguments);
 })
 
 
 //节流函数
-
 function Throttle(interval, callback) {
 	var time;
 	this.filter = function (args) {
@@ -297,27 +296,6 @@ function initRecColor1() {
 	}
 }
 
-function toColor16(str) {
-	if (/^(rgb|RGB)/.test(str)) {
-		var aColor = str.replace(/(?:||rgb|RGB)*/g, "").split(",");
-		var strHex = "#";
-		for (var i = 0; i < aColor.length; i++) {
-			var hex = Number(aColor[i]).toString(16);
-			if (hex === "0") {
-				hex += hex;
-			}
-			strHex += hex;
-		}
-
-		if (strHex.length !== 7) {
-			strHex = str;
-		}
-		return strHex;
-	} else {
-		return str;
-	}
-}
-
 var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;  
 
 /*RGB格式转为16进制颜色*/ 
@@ -330,7 +308,7 @@ String.prototype.colorHex = function(){
             var hex = Number(aColor[i]).toString(16);
             if (hex.length == 1) {
                hex = "0" + hex;
-            } //问题出在这里
+            }
             if(hex === "0"){
                 hex += hex;  
             }
@@ -378,6 +356,51 @@ String.prototype.colorRgb = function(){
     }  
 }; 
 	
+function inputFn(val) {
+
+	var a = val.slice(4);
+	var c = a.split(',');
+	c[2] = parseInt(c[2]).toString();
+	c.push('1');
+	rgbaArr = c;
+
+	var r1 = Math.round(210 / 255 * c[0]);
+	var g1 = Math.round(210 / 255 * c[1]);
+	var a1 = Math.round(210 / 255 * c[2]);
+
+	var rgb1Arr = [];
+	rgb1Arr[0] = r1;	
+	rgb1Arr[1] = g1;
+	rgb1Arr[2] = a1;
+
+	for(var i=0; i<document.getElementsByClassName('picker-bar-drag').length; i++) {
+		document.getElementsByClassName('picker-bar-drag')[i].style.left = rgb1Arr[i] + 'px';
+	}
+	changeBgColor();
+	changeCircleText();
+}
+
+function inputFn1(val) {
+	var c = rgbaArr;
+	var r1 = Math.round(210 / 255 * c[0]);
+	var g1 = Math.round(210 / 255 * c[1]);
+	var b1 = Math.round(210 / 255 * c[2]);
+	var a1 = Math.round(210 / 255 * (c[3] * 255));
+	// console.log(210 / 255, c[3])
+
+	var rgb1Arr = [];
+	rgb1Arr[0] = r1;	
+	rgb1Arr[1] = g1;
+	rgb1Arr[2] = b1;
+	rgb1Arr[3] = a1;
+	// console.log(a1)
+
+	for(var i=0; i<document.getElementsByClassName('picker-bar-drag').length; i++) {
+		document.getElementsByClassName('picker-bar-drag')[i].style.left = rgb1Arr[i] + 'px';
+	}
+	changeBgColor();
+	changeCircleText();
+}
 	
 function CheckIsColor(colorValue) {  
     var type = /^(#[0-9a-fA-F]{6}){1}$/g;  
@@ -387,71 +410,104 @@ function CheckIsColor(colorValue) {
         // re = new RegExp(type);  
         if (colorValue.match(type1) == null) {  
 			return false;  
-			// console.log(1)
         } else {  
-			// return true;
-			// rgb  
-			var a = colorValue.slice(4);
-			var c = a.split(',');
-			c[2] = parseInt(c[2]).toString();
-			c.push('1');
-			rgbaArr = c;
-			// console.log(rgbaArr)
-			// console.log(2)
-			var r1 = Math.round(210 / 255 * c[0]);
-			var g1 = Math.round(210 / 255 * c[1]);
-			var a1 = Math.round(210 / 255 * c[2]);
-
-			var rgb1Arr = [];
-			rgb1Arr[0] = r1;	
-			rgb1Arr[1] = g1;
-			rgb1Arr[2] = a1;
-
-			for(var i=0; i<document.getElementsByClassName('picker-bar-drag').length; i++) {
-				document.getElementsByClassName('picker-bar-drag')[i].style.left = rgb1Arr[i] + 'px';
-			}
-			changeBgColor();
-			changeCircleText();
+			inputFn(colorValue)
         }  
     } else {  
-		// return true;  
-		// 16
 		var rgb = colorValue.colorRgb();
-		var a = rgb.slice(4);
-		var c = a.split(',');
-			c[2] = parseInt(c[2]).toString();
-			c.push('1');
-		rgbaArr = c;
-
-		var r1 = Math.round(210 / 255 * c[0]);
-		var g1 = Math.round(210 / 255 * c[1]);
-		var a1 = Math.round(210 / 255 * c[2]);
-
-		var rgb1Arr = [];
-		rgb1Arr[0] = r1;	
-		rgb1Arr[1] = g1;
-		rgb1Arr[2] = a1;
-
-		console.log(rgb1Arr)
-
-		for(var i=0; i<document.getElementsByClassName('picker-bar-drag').length; i++) {
-			document.getElementsByClassName('picker-bar-drag')[i].style.left = rgb1Arr[i] + 'px';
-		}
-		changeBgColor();
-		changeCircleText();
-
-		// console.log(rgbaArr)
-		// console.log(3)
+		inputFn(rgb)
     }  
 }  
 
-console.log('rgb(202,56,89)'.colorHex());
-
 document.getElementById('getInputColor').addEventListener('click',function() {
 	var inputColor = document.getElementById('inputColor').value;
-	console.log(inputColor);
-
-	//判断是rgb还是#xxx
 	CheckIsColor(inputColor);	
+	getDom('#picker-r').value = rgbaArr[0];
+	getDom('#picker-g').value = rgbaArr[1];
+	getDom('#picker-b').value = rgbaArr[2];
+	getDom('#picker-a').value = rgbaArr[3];
+});
 
-})
+
+
+domEvent(getDom('#picker-r'),'input',function() {
+	// console.log(this.value);
+	var thisNum = this.value;
+	var reg = /^[0-9]+.?[0-9]*$/;
+	if (reg.test(thisNum)) {
+	  if(thisNum <= 0) {
+		  thisNum = 0;
+	  }else if(thisNum >= 255) {
+		  thisNum = 255;
+	  }else {
+		  thisNum = Math.round(thisNum);
+	  }
+	  rgbaArr[0] = thisNum;
+	  changeCircleText();
+	  changeBgColor();
+	  inputFn1(rgbaArr);
+	}
+});			
+
+domEvent(getDom('#picker-g'),'input',function() {
+	// console.log(this.value);
+	var thisNum = this.value;
+	var reg = /^[0-9]+.?[0-9]*$/;
+	if (reg.test(thisNum)) {
+	  if(thisNum <= 0) {
+		  thisNum = 0;
+	  }else if(thisNum >= 255) {
+		  thisNum = 255;
+	  }else {
+		  thisNum = Math.round(thisNum);
+	  }
+	  rgbaArr[1] = thisNum;
+	  changeCircleText();
+	  changeBgColor();
+	  inputFn1(rgbaArr);
+	}
+});		
+
+domEvent(getDom('#picker-b'),'input',function() {
+	// console.log(this.value);
+	var thisNum = this.value;
+	var reg = /^[0-9]+.?[0-9]*$/;
+	if (reg.test(thisNum)) {
+	  if(thisNum <= 0) {
+		  thisNum = 0;
+	  }else if(thisNum >= 255) {
+		  thisNum = 255;
+	  }else {
+		  thisNum = Math.round(thisNum);
+	  }
+	  rgbaArr[2] = thisNum;
+	  changeCircleText();
+	  changeBgColor();
+	  inputFn1(rgbaArr);
+	}
+});		
+
+domEvent(getDom('#picker-a'),'input',function() {
+	// console.log(this.value);
+	var thisNum = this.value;
+	var reg = /^\d+(?:\.\d{1,2})?$/;
+	if (reg.test(thisNum)) {
+		// console.log('ok')
+	  if(thisNum <= 0) {
+		  thisNum = 0;
+	  }else if(thisNum >= 1) {
+		  thisNum = 1;
+	  }else {
+		//   console.log(thisNum)
+		//   thisNum = thisNum.toFixed(2);
+	  }
+	  rgbaArr[3] = thisNum;
+	  changeCircleText();
+	  changeBgColor();
+	  inputFn1(rgbaArr);
+	}
+});		
+
+// getDom('#picker-r').addEventListener('input',function(){
+// 	console.log(11)
+// })

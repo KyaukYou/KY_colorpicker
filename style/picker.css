@@ -58,25 +58,20 @@
     margin-bottom: 3px;
     background-color: rgba(109, 90, 108, 0.75);
     position: relative;
-    left: 10px;
+    left: 5px;
     background-image: url('../image/texture.png');
 }
 
 .picker-bar-drag {
     position: absolute;
-    left: 206px;
+    left: 210px;
     top: -9px;
     width: 8px;
     height: 25px;
     background-color: rgba(109, 90, 108, 0.90);
-    /* cursor: url('../image/cursor8.png'),auto; */
     cursor: pointer;
-    /* background-image: url('../image/texture.png'); */
     transition: all .05s;
 }
-
-
-
 
 .picker-circle {
     position: fixed;
@@ -95,7 +90,6 @@
 .picker-sm-circle {
     width: 84px;
     height: 84px;
-    /* border: 5px solid salmon; */
     border-radius: 50%;
     display: inline-block;
     margin: 15px 3px 0 3px;
@@ -124,22 +118,18 @@
 
 
 .picker-wrap .picker-div:nth-of-type(1) .picker-bar {
-    /* background-color: red; */
     background: linear-gradient(to right, rgba(255,180,180,0.8), rgba(255,0,0,0.8));
 }
 
 .picker-wrap .picker-div:nth-of-type(2) .picker-bar {
-    /* background-color: red; */
     background: linear-gradient(to right, rgba(180,255,180,0.8), rgba(0,255,0,0.8));  
 }
 
 .picker-wrap .picker-div:nth-of-type(3) .picker-bar {
-    /* background-color: red; */
     background: linear-gradient(to right, rgba(180,180,255,0.8), rgba(0,0,255,0.8));
 }
 
 .picker-wrap .picker-div:nth-of-type(4) .picker-bar {
-    /* background-color: red; */
     background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
 }
 
@@ -177,4 +167,25 @@
     font-size: 15px;
     transform: translate(0, -40px);
     transition: all .2s linear;
+}
+
+.picker-input-rgba {
+    position: absolute;
+    left: 285px;
+    margin-top: -2px;
+    width: 40px;
+    height: 28px;
+    border: none;
+    cursor: text;
+    box-sizing: border-box;
+    padding: 2px 0px;
+    /* padding-left: 7px; */
+    font-size: 12px;
+    text-align: center;
+    color: rgb(76, 73, 76);
+    background-color: rgba(255, 255, 255, 0.5);
+    outline: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 3px;
 }

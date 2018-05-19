@@ -278,13 +278,14 @@ body {
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
 	/* margin: 2px auto; */
-	background-color: white;
-	border: 1px solid white;
+	background-color: rgba(242,242,242,1);
+	/* border: 1px solid white; */
+	border: none;
 	/* border-left: 1px solid black; */
 	outline: none;
 	transition: all .3s;
 }
 
 .color-input button:hover {
-	background-color: rgba(255 ,255 ,255 , 0.8)
+	background-color: rgba(242,242,242,0.7);
 }
