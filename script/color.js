@@ -140,7 +140,7 @@ function barChange() {
 	for (let i = 0; i < bar.length; i++) {
 		bar[i].style.left = rgbaArr[i] / 255 * 210 + 'px';
 		if (i == 3) {
-			bar[i].style.left = rgbaArr[i] * 100 / 100 * 210 + 'px';
+			bar[i].style.left = rgbaArr[i] * 100 / 100 * 210 + 4 + 'px';
 		}
 	}
 }
@@ -385,13 +385,15 @@ function inputFn1(val) {
 	var r1 = Math.round(210 / 255 * c[0]);
 	var g1 = Math.round(210 / 255 * c[1]);
 	var b1 = Math.round(210 / 255 * c[2]);
-	var a1 = Math.round(210 / 255 * c[3]);
+	var a1 = Math.round(210 / 255 * (c[3] * 255));
+	// console.log(210 / 255, c[3])
 
 	var rgb1Arr = [];
 	rgb1Arr[0] = r1;	
 	rgb1Arr[1] = g1;
 	rgb1Arr[2] = b1;
 	rgb1Arr[3] = a1;
+	// console.log(a1)
 
 	for(var i=0; i<document.getElementsByClassName('picker-bar-drag').length; i++) {
 		document.getElementsByClassName('picker-bar-drag')[i].style.left = rgb1Arr[i] + 'px';
@@ -409,7 +411,6 @@ function CheckIsColor(colorValue) {
         if (colorValue.match(type1) == null) {  
 			return false;  
         } else {  
-
 			inputFn(colorValue)
         }  
     } else {  
@@ -421,6 +422,10 @@ function CheckIsColor(colorValue) {
 document.getElementById('getInputColor').addEventListener('click',function() {
 	var inputColor = document.getElementById('inputColor').value;
 	CheckIsColor(inputColor);	
+	getDom('#picker-r').value = rgbaArr[0];
+	getDom('#picker-g').value = rgbaArr[1];
+	getDom('#picker-b').value = rgbaArr[2];
+	getDom('#picker-a').value = rgbaArr[3];
 });
 
 
@@ -482,24 +487,26 @@ domEvent(getDom('#picker-b'),'input',function() {
 	}
 });		
 
-// domEvent(getDom('#picker-a'),'input',function() {
-// 	// console.log(this.value);
-// 	var thisNum = this.value;
-// 	var reg = /^[0-9]+.?[0-9]*$/;
-// 	if (reg.test(thisNum)) {
-// 	  if(thisNum <= 0) {
-// 		  thisNum = 0;
-// 	  }else if(thisNum >= 1) {
-// 		  thisNum = 1;
-// 	  }else {
-// 		  thisNum = thisNum.toFixed(2);
-// 	  }
-// 	  rgbaArr[3] = thisNum;
-// 	  changeCircleText();
-// 	  changeBgColor();
-// 	  inputFn1(rgbaArr);
-// 	}
-// });		
+domEvent(getDom('#picker-a'),'input',function() {
+	// console.log(this.value);
+	var thisNum = this.value;
+	var reg = /^\d+(?:\.\d{1,2})?$/;
+	if (reg.test(thisNum)) {
+		// console.log('ok')
+	  if(thisNum <= 0) {
+		  thisNum = 0;
+	  }else if(thisNum >= 1) {
+		  thisNum = 1;
+	  }else {
+		//   console.log(thisNum)
+		//   thisNum = thisNum.toFixed(2);
+	  }
+	  rgbaArr[3] = thisNum;
+	  changeCircleText();
+	  changeBgColor();
+	  inputFn1(rgbaArr);
+	}
+});		
 
 // getDom('#picker-r').addEventListener('input',function(){
 // 	console.log(11)

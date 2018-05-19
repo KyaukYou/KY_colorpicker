@@ -64,7 +64,7 @@
 
 .picker-bar-drag {
     position: absolute;
-    left: 206px;
+    left: 210px;
     top: -9px;
     width: 8px;
     height: 25px;
@@ -173,14 +173,15 @@
     position: absolute;
     left: 285px;
     margin-top: -2px;
-    width: 46px;
+    width: 40px;
     height: 28px;
     border: none;
     cursor: text;
     box-sizing: border-box;
-    padding: 2px 5px;
-    padding-left: 7px;
-    font-size: 16px;
+    padding: 2px 0px;
+    /* padding-left: 7px; */
+    font-size: 12px;
+    text-align: center;
     color: rgb(76, 73, 76);
     background-color: rgba(255, 255, 255, 0.5);
     outline: none;
