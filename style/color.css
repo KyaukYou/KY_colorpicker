@@ -1,6 +1,6 @@
 @font-face {
 	font-family: colorFont;
-	src: url('../font/color.ttf');
+	src: url('http://data.wuyayu.com/color.ttf');
 }
 
 body {
@@ -39,6 +39,11 @@ body {
 	height: 100%;
 	transition: all .5s ;
 	z-index: 120;
+	-webkit-transform: translateZ(0);
+   -moz-transform: translateZ(0);
+   -ms-transform: translateZ(0);
+   -o-transform: translateZ(0);
+   transform: translateZ(0);
 }
 
 .color-container-wrap-left {
@@ -288,4 +293,17 @@ body {
 
 .color-input button:hover {
 	background-color: rgba(242,242,242,0.7);
+}
+
+.color-span {
+	position: absolute;
+	font-size: 14px;
+}
+
+.color-span1 {
+	top: -52px;
+}
+
+.color-span2 {
+	top: -28px;
 }

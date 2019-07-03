@@ -3,7 +3,7 @@ pickerBarDragEvent();
 changeCircleText();
 typeChange();     
 initRecColor();
-initRecColor1();
+// initRecColor1();
 changeInputRgba();
 
 window.onresize = function() {
