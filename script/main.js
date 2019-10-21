@@ -360,7 +360,7 @@ var dis = [
 ];
 
 // 初始化参数
-var rgbaArr = [248,195,205,1];
+var rgbaArr = [248,195,205,1.00];
 
 var currentPickerIndex = 0;
 

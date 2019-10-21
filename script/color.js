@@ -140,7 +140,7 @@ function barChange() {
 	for (let i = 0; i < bar.length; i++) {
 		bar[i].style.left = rgbaArr[i] / 255 * 210 + 'px';
 		if (i == 3) {
-			bar[i].style.left = rgbaArr[i] * 100 / 100 * 210 + 4 + 'px';
+			bar[i].style.left = rgbaArr[i] * 100 / 100 * 210  + 'px';
 		}
 	}
 }
